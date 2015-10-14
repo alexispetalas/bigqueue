@@ -54,11 +54,11 @@ describe("Big Queue Client",function(){
                 })
             })
         })
-        it("should get an error if the topic already exist",function(done){
+        it("should not get an error if the topic already exist",function(done){
             bqClient.createTopic("testTopic",function(err){
                 should.not.exist(err)
                 bqClient.createTopic("testTopic",function(err){
-                    should.exist(err)
+                    should.not.exist(err)
                     done()
                 })
             })
@@ -92,11 +92,11 @@ describe("Big Queue Client",function(){
                 })
             })
         })
-        it("should get an error if the consumer group already exist",function(done){
+        it("should not get an error if the consumer group already exist",function(done){
             bqClient.createConsumerGroup("testTopic","testConsumer",function(err){
                 should.not.exist(err)
                 bqClient.createConsumerGroup("testTopic","testConsumer",function(err){
-                    should.exist(err)
+                    should.not.exist(err)
                     done() 
                 })
             })

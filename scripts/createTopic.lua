@@ -13,7 +13,8 @@ end
 local exist = redis.call("sismember","topics",topic)
 
 if exist == 1 then
-    return {err="Topic ["..topic.."] already exist"}
+    -- Already exists
+    return 
 end
 
 redis.call("set","topics:"..topic..":ttl",ttl)

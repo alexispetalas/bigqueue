@@ -101,11 +101,11 @@ describe("Redis lua scripts",function(){
             })
         })
 
-        it("should fail if topic already exist",function(done){
+        it("should not fail if topic already exist",function(done){
             redisClient.execute("eval",createTopicScript,0,"testTopic",function(err,data){
                 should.not.exist(err)
                 redisClient.execute("eval",createTopicScript,0,"testTopic",function(err,data){
-                    should.exist(err)
+                    should.not.exist(err)
                     done()
                 })
             })
@@ -167,11 +167,11 @@ describe("Redis lua scripts",function(){
              })
 
         })
-        it("should fail if the consumer already exist",function(done){
+        it("should not fail if the consumer already exist",function(done){
              redisClient.execute("eval",createConsumerScript,0,"testTopic","testConsumer",function(err){
                  should.not.exist(err)
                  redisClient.execute("eval",createConsumerScript,0,"testTopic","testConsumer",function(err){
-                     should.exist(err)
+                     should.not.exist(err)
                      done()
                  })
              })
@@ -633,9 +633,9 @@ describe("Redis lua scripts",function(){
                 })
             })
         })
-        it("should get an error if the consumer doesn't exists",function(done){
+        it("should not get an error if the consumer doesn't exists",function(done){
             redisClient.execute("eval",deleteConsumerScript,0,"testTopic","testConsumer-no-exist",function(err,data){
-                should.exist(err)
+                should.not.exist(err)
                 done()
             })
         })
@@ -666,9 +666,9 @@ describe("Redis lua scripts",function(){
                 })
             })
         })
-        it("should get an error if the topic doesn't exists",function(done){
+        it("should not get an error if the topic doesn't exists",function(done){
             redisClient.execute("eval",deleteTopicScript,0,"testTopic-no-exist",function(err,data){
-                should.exist(err)
+                should.not.exist(err)
                 done()
             })
         })

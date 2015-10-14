@@ -7,7 +7,8 @@ local topicConsumersKey = topicKey..":consumers"
 local exists = redis.call("sismember","topics",topic)
 
 if tonumber(exists) == 0 then
-    return {err="Topic ["..topic.."] not found"}
+    -- Topic already deleted
+    return 
 end
 
 local consumers = redis.call("scard",topicConsumersKey)

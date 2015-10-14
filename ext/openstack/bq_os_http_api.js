@@ -11,7 +11,14 @@ var valid_element_regex=/^(\w|[0-9]){2,50}$/
 
 var loadApp = function(app){
     app.get("/ping",function(req,res){
-      res.end("pong")
+      app.settings.bqClient.healthcheck(function(err) {
+        if(err) {
+          res.sendStatus(500);
+          res.json(err);  
+        }else{
+          res.end("pong");
+        }
+      });
     })
 
     app.post(app.settings.basePath+"/messages",function(req,res){

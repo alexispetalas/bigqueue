@@ -14,7 +14,7 @@ end
 
 local existConsumer = redis.call("sismember", topicConsumersKey, consumerGroup) 
 if existConsumer == 1 then
-    return {err="Consumer ["..consumerGroup.."] for topic ["..topic.."] already exist"}
+    return consumerKey 
 end
 
 local head = redis.call("get",topicHead)

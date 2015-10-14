@@ -9,7 +9,8 @@ local lastPointer = consumerKey..":last"
 local res = redis.call("srem",topicConsumersKey,consumerGroup)
 
 if not (tonumber(res) == 1) then
-    return {err="Consumer ["..consumerGroup.."] not found for topic ["..topic.."]"}
+    -- Consumer hass been deleted 
+    return 
 end
 
 redis.call("del",lastPointer)
