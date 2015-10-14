@@ -52,28 +52,6 @@ describe("http api",function(){
                 done()
             })
         })
-        it("should get an error topic already exist",function(done){
-            request({
-                url:"http://127.0.0.1:8080/topics",
-                method:"POST",
-                json:{name:"testTopic"}
-            },function(error,response,body){
-                should.not.exist(error)
-                should.exist(response)
-                response.statusCode.should.equal(201)
-                body.should.have.property("name")
-                request({
-                   url:"http://127.0.0.1:8080/topics",
-                   method:"POST",
-                   json:{name:"testTopic"}
-                },function(error,response,body){
-                    response.statusCode.should.equal(409)
-                    body.should.have.property("err")
-                    done()
-                })
-
-            })
-        })
         it("should get an error on invalid json",function(done){
             request({
                 url:"http://127.0.0.1:8080/topics",
@@ -143,18 +121,6 @@ describe("http api",function(){
             })
         })
 
-        it("should get an error if topic doesn't exist",function(done){
-            request({
-                url:"http://127.0.0.1:8080/topics/testTopic-no-exist/consumers",
-                method:"POST",
-                json:{name:"testConsumer"}
-            },function(error,response,body){
-                should.not.exist(error)
-                should.exist(response)
-                response.statusCode.should.equal(409)
-                done()
-            })
-        })
     })
     describe("Exchange Messages",function(done){
         beforeEach(function(done){
