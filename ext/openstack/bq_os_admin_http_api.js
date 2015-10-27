@@ -508,7 +508,7 @@ exports.startup = function(config){
     app.use(writeFilter())
     app.enable("jsonp callback")
         
-    app.use(bodyParser());
+    app.use(bodyParser({limit: '50mb'}));
 
     if(config.keystoneConfig){
         app.use(keystoneMiddlware.auth(config.keystoneConfig))
