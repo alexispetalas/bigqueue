@@ -37,9 +37,14 @@ var httpConfig = {
 
 //Check for external config
 var config
-console.log(externalConfig)
-console.log("Loading ["+externalConfig+"]");
-config = require(externalConfig).httpApiConfig;
+if (externalConfig) {
+  console.log(externalConfig)
+  console.log("Loading ["+externalConfig+"]");
+  config = require(externalConfig).httpApiConfig;
+} else {
+  config = httpConfig
+}
+
 log.setLevel(config.logLevel || "error");
 
 //Run config

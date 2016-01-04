@@ -1,0 +1,10 @@
+{
+  "name": "bigqueue",
+  "dependencies": {
+    "qs": {
+      "version": "5.2.0",
+      "from": "qs@v5.2.0",
+      "resolved": "https://registry.npmjs.org/qs/-/qs-5.2.0.tgz"
+    }
+  }
+}
